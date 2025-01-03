@@ -23,7 +23,7 @@ public class TodoRepositoryTest {
 
   @Test
   public void testSave(){
-    Optional<User> user = userRepository.findById(2L);
+    Optional<User> user = userRepository.findById(4L);
     assert(user).isPresent();
 
     Todo saveTodo = repository.save(Todo.builder()
