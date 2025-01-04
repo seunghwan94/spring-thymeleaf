@@ -34,7 +34,9 @@ public class ReplyServiceTests {
 
   @Test
   public void testWrite(){
-    Optional<Todo> todoOpt = todoRepository.findById(2L);
+    // target
+    Long tno = 7L;
+    Optional<Todo> todoOpt = todoRepository.findById(tno);
     assertNotNull(todoOpt.isPresent());
     
     // get
@@ -71,7 +73,7 @@ public class ReplyServiceTests {
   @Test
   public void testRemove(){
     // target
-    int rno = 2;
+    int rno = 4;
     // get
     Reply relpy = service.findById(rno);
     assertNotNull(relpy);

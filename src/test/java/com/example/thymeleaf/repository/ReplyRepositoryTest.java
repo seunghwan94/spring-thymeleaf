@@ -85,4 +85,11 @@ public class ReplyRepositoryTest {
     assertTrue(reply.isEmpty());
   }
 
+  
+  @Test
+  public void testDeleteByTodo(){
+    Long tno = 4L;
+    repository.deleteByTodo(tno);
+  }
+
 }

@@ -10,5 +10,5 @@ public interface TodoService {
   Long write(Todo todo);
 
   void modify(Todo todo);
-  void remove(Long tno);
+  void remove(Todo todo);
 }

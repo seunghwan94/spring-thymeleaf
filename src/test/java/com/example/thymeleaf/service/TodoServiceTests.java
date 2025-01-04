@@ -35,7 +35,7 @@ public class TodoServiceTests {
   @Test
   public void testWrite(){
     // target
-    Long uno = 2L;
+    Long uno = 9L;
     // get
     Optional<User> userOpt = repository.findById(uno);
     assertTrue(userOpt.isPresent());
@@ -74,14 +74,15 @@ public class TodoServiceTests {
   @Test
   public void testRemove(){
     // target
-    Long tno = 3L;
+    Long tno = 4L;
     // get
     Todo todo = service.findById(tno);
     assertNotNull(todo);
     // when
-    service.remove(todo.getTno());
+    service.remove(todo);
     // then
     todo = service.findById(tno);
     assertNull(todo);
   }
+
 }

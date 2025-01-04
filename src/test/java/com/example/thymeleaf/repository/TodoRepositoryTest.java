@@ -36,7 +36,6 @@ public class TodoRepositoryTest {
     assertNotNull(saveTodo.getUser().getUno());
   }
 
-
   @Test
   public void testUpdate(){
     Optional<User> user = userRepository.findById(2L);

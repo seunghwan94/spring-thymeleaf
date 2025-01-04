@@ -10,5 +10,5 @@ public interface UserService {
   Long write(User user);
 
   void modify(User user);
-  void remove(Long uno);
+  void remove(User user);
 }
