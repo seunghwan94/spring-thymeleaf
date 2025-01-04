@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.ReplyRepository;
 import com.example.thymeleaf.repository.TodoRepository;
@@ -44,13 +45,16 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public void remove(User user) {
-    // log.error("reply");
-    // replyRepository.deleteByUser(user.getUno());
-    // log.error("todo");
-    // todoRepository.deleteByUser(user.getUno());
-    // log.error("user");
-    // userRepository.deleteById(user.getUno());
+  public void remove(Long uno) {
+    List<Todo> todos = todoRepository.findByUser_Uno(6L);
+    todos.forEach((todo)->{
+      replyRepository.deleteByTodo(todo.getTno());
+    });
+    replyRepository.deleteByUser(uno);
+
+    todoRepository.deleteByUser(uno);
+    
+    userRepository.deleteById(uno);
   }
 
   

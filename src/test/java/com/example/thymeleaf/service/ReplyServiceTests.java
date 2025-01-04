@@ -14,11 +14,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.thymeleaf.domain.entity.Reply;
 import com.example.thymeleaf.domain.entity.Todo;
+import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.TodoRepository;
+import com.example.thymeleaf.repository.UserRepository;
 
 
 @SpringBootTest
 public class ReplyServiceTests {
+  @Autowired
+  private UserRepository userRepository;
   @Autowired
   private TodoRepository todoRepository;
   @Autowired
@@ -35,7 +39,11 @@ public class ReplyServiceTests {
   @Test
   public void testWrite(){
     // target
-    Long tno = 7L;
+    Long uno = 6L;
+    Optional<User> userOpt = userRepository.findById(uno);
+    assertNotNull(userOpt.isPresent());
+
+    Long tno = 12L;
     Optional<Todo> todoOpt = todoRepository.findById(tno);
     assertNotNull(todoOpt.isPresent());
     
@@ -43,7 +51,7 @@ public class ReplyServiceTests {
     Reply relpy = Reply.builder()
       .text("email@naver.com")
       .todo(todoOpt.get())
-      .user(todoOpt.get().getUser())
+      .user(userOpt.get())
     .build();
     // when
     int rno = service.write(relpy);
@@ -73,7 +81,7 @@ public class ReplyServiceTests {
   @Test
   public void testRemove(){
     // target
-    int rno = 4;
+    int rno = 11;
     // get
     Reply relpy = service.findById(rno);
     assertNotNull(relpy);

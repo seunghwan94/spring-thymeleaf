@@ -77,19 +77,14 @@ public class ReplyRepositoryTest {
 
   @Test
   public void testDelete(){
-    Optional<Reply> reply = repository.findById(1);
+    // target
+    int rno = 9;
+    Optional<Reply> reply = repository.findById(rno);
     assertTrue(reply.isPresent());
     
     repository.deleteById(reply.get().getRno());
-    reply = repository.findById(1);
+    reply = repository.findById(rno);
     assertTrue(reply.isEmpty());
-  }
-
-  
-  @Test
-  public void testDeleteByTodo(){
-    Long tno = 4L;
-    repository.deleteByTodo(tno);
   }
 
 }

@@ -17,6 +17,10 @@ import com.example.thymeleaf.domain.entity.User;
 public class UserRepositoryTest {
   @Autowired
   private UserRepository repository;
+  @Autowired
+  private TodoRepository todoRepository;
+  @Autowired
+  private ReplyRepository replyRepository;
 
   @Test
   public void testSave(){
@@ -36,7 +40,7 @@ public class UserRepositoryTest {
   @Test
   public void testUpdate(){
     User saveUser = repository.save(User.builder()
-      .uno(1L)
+      .uno(11L)
       .email("test1")
       .password("1234")
       .name("연습")
@@ -57,11 +61,18 @@ public class UserRepositoryTest {
 
   @Test
   public void testDelete(){
-    Optional<User> user = repository.findById(1L);
+    // target
+    Long uno = 9L;
+    Optional<User> user = repository.findById(uno);
     assertTrue(user.isPresent());
-    
+
+    // when
+    replyRepository.deleteByUser(user.get().getUno());
+    todoRepository.deleteByUser(user.get().getUno());
     repository.deleteById(user.get().getUno());
-    user = repository.findById(1L);
+
+    // then
+    user = repository.findById(uno);
     assertTrue(user.isEmpty());
   }
 

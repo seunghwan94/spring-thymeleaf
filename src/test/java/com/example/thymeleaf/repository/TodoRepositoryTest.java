@@ -19,6 +19,8 @@ public class TodoRepositoryTest {
   @Autowired
   private UserRepository userRepository;
   @Autowired
+  private ReplyRepository replyRepository;
+  @Autowired
   private TodoRepository repository;
 
   @Test
@@ -63,11 +65,16 @@ public class TodoRepositoryTest {
 
   @Test
   public void testDelete(){
-    Optional<Todo> todo = repository.findById(1L);
-    assertTrue(todo.isPresent());
+    // target
+    Long tno = 8L;
     
+    Optional<Todo> todo = repository.findById(tno);
+    assertTrue(todo.isPresent());
+    // when
+    replyRepository.deleteByTodo(todo.get().getTno());
     repository.deleteById(todo.get().getTno());
-    todo = repository.findById(1L);
+    // then
+    todo = repository.findById(tno);
     assertTrue(todo.isEmpty());
   }
 

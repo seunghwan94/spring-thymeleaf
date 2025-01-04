@@ -79,7 +79,7 @@ public class TodoServiceTests {
     Todo todo = service.findById(tno);
     assertNotNull(todo);
     // when
-    service.remove(todo);
+    service.remove(todo.getTno());
     // then
     todo = service.findById(tno);
     assertNull(todo);
