@@ -1,4 +1,4 @@
-package com.example.thymeleaf.service;
+package com.example.thymeleaf.serviceTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -17,6 +17,7 @@ import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.TodoRepository;
 import com.example.thymeleaf.repository.UserRepository;
+import com.example.thymeleaf.service.ReplyService;
 
 
 @SpringBootTest
@@ -72,7 +73,7 @@ public class ReplyServiceTests {
       .user(relpy.getUser())
     .build();
     // when
-    service.modify(modifyReply);
+    service.modify(modifyReply,rno);
     // then
     relpy = service.findById(rno);
     assertEquals("email@naver.com",relpy.getText());

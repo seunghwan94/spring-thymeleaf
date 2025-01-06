@@ -9,6 +9,6 @@ public interface ReplyService {
   List<Reply> list();
   int write(Reply reply);
 
-  void modify(Reply reply);
+  void modify(Reply reply, int rno);
   void remove(int rno);
 }

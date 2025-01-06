@@ -1,4 +1,4 @@
-package com.example.thymeleaf.service;
+package com.example.thymeleaf.serviceTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.UserRepository;
+import com.example.thymeleaf.service.TodoService;
 
 
 @SpringBootTest
@@ -64,7 +65,7 @@ public class TodoServiceTests {
       .user(todo.getUser())
     .build();
     // when
-    service.modify(modifyTodo);
+    service.modify(modifyTodo,tno);
     // then
     todo = service.findById(tno);
     assertEquals("수정제목",todo.getTitle());

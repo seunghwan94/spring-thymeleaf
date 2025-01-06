@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.thymeleaf.domain.entity.Todo;
+import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.ReplyRepository;
 import com.example.thymeleaf.repository.TodoRepository;
+import com.example.thymeleaf.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class TodoServiceImpl implements TodoService{
   private TodoRepository todoRepository;
+  private UserRepository userRepository;
   private ReplyRepository replyRepository;
 
   @Override
@@ -35,8 +38,15 @@ public class TodoServiceImpl implements TodoService{
   }
   
   @Override
-  public void modify(Todo todo) {
-    todoRepository.save(todo);
+  public void modify(Todo todo, Long tno) {
+    Optional<User> user = userRepository.findById(todo.getUser().getUno());
+    Todo modifyTodo = Todo.builder()
+      .tno(todo.getTno())
+      .title(todo.getTitle())
+      .content(todo.getContent())
+      .user(user.get())
+    .build();
+    todoRepository.save(modifyTodo);
   }
 
   @Override

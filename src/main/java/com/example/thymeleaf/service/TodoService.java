@@ -9,6 +9,6 @@ public interface TodoService {
   List<Todo> list();
   Long write(Todo todo);
 
-  void modify(Todo todo);
+  void modify(Todo todo, Long tno);
   void remove(Long tno);
 }

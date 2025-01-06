@@ -1,4 +1,4 @@
-package com.example.thymeleaf.repository;
+package com.example.thymeleaf.repositoryTests;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.thymeleaf.domain.entity.Reply;
 import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
+import com.example.thymeleaf.repository.ReplyRepository;
+import com.example.thymeleaf.repository.TodoRepository;
+import com.example.thymeleaf.repository.UserRepository;
 
 
 @SpringBootTest
