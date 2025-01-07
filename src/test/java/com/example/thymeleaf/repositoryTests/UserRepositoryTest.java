@@ -9,11 +9,14 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.ReplyRepository;
 import com.example.thymeleaf.repository.TodoRepository;
 import com.example.thymeleaf.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 
 @SpringBootTest
@@ -41,6 +44,8 @@ public class UserRepositoryTest {
 
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testUpdate(){
     User saveUser = repository.save(User.builder()
       .uno(11L)
@@ -63,15 +68,17 @@ public class UserRepositoryTest {
   }
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testDelete(){
     // target
-    Long uno = 9L;
+    Long uno = 14L;
     Optional<User> user = repository.findById(uno);
     assertTrue(user.isPresent());
 
     // when
-    replyRepository.deleteByUser(user.get().getUno());
-    todoRepository.deleteByUser(user.get().getUno());
+    replyRepository.deleteByUser_Uno(user.get().getUno());
+    todoRepository.deleteByUser_Uno(user.get().getUno());
     repository.deleteById(user.get().getUno());
 
     // then

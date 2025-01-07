@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.thymeleaf.domain.entity.Reply;
 import com.example.thymeleaf.service.ReplyService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class ReplyController {
   private ReplyService service;
 
+
   @GetMapping({"","/"})
+  @Operation(summary = "Reply Select List", description = "댓글 전체 목록 json return")
   public ResponseEntity<?> list() {
     return ResponseEntity.ok().body(service.list());
   }

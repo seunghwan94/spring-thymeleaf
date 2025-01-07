@@ -6,8 +6,6 @@ spring:
     url: jdbc:log4jdbc:mariadb://15.164.103.52:3306/thymeleaf
     username: thymeleaf
     password: 1234
-
-
   jpa:
     hibernate:
       ddl-auto: update # 배포할땐 이렇게하면 망할수 있으니 조심 (배포할때 끄기)
@@ -17,9 +15,6 @@ spring:
         use_sql_comments: true
     show-sql: true # SQL 로그 출력
     database-platform: org.hibernate.dialect.MariaDBDialect
-
-
-
   devtools:
     restart:
       enabled: true
@@ -35,4 +30,8 @@ spring:
     suffix: .html
     encoding: UTF-8
     mode: html
-    
+
+springdoc:
+  swagger-ui:
+    path: /swag
+  

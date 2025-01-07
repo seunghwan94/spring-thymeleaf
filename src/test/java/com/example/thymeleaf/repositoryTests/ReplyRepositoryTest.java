@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import com.example.thymeleaf.domain.entity.Reply;
 import com.example.thymeleaf.domain.entity.Todo;
@@ -16,6 +17,8 @@ import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.ReplyRepository;
 import com.example.thymeleaf.repository.TodoRepository;
 import com.example.thymeleaf.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 
 @SpringBootTest
@@ -47,6 +50,8 @@ public class ReplyRepositoryTest {
 
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testUpdate(){
     Optional<User> user = userRepository.findById(2L);
     assert(user).isPresent();
@@ -79,9 +84,11 @@ public class ReplyRepositoryTest {
   }
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testDelete(){
     // target
-    int rno = 9;
+    int rno = 16;
     Optional<Reply> reply = repository.findById(rno);
     assertTrue(reply.isPresent());
     

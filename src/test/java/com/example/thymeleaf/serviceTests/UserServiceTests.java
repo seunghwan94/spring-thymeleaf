@@ -64,7 +64,7 @@ public class UserServiceTests {
   @Test
   public void testRemove(){
     // target
-    Long uno = 6L;
+    Long uno = 5L;
     // get
     User user = service.findById(uno);
     assertNotNull(user);

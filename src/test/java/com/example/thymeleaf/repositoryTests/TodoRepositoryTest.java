@@ -9,12 +9,15 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
 import com.example.thymeleaf.repository.ReplyRepository;
 import com.example.thymeleaf.repository.TodoRepository;
 import com.example.thymeleaf.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 
 @SpringBootTest
@@ -42,6 +45,8 @@ public class TodoRepositoryTest {
   }
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testUpdate(){
     Optional<User> user = userRepository.findById(2L);
     assert(user).isPresent();
@@ -67,14 +72,16 @@ public class TodoRepositoryTest {
   }
 
   @Test
+  @Transactional
+  @Rollback(false)
   public void testDelete(){
     // target
-    Long tno = 8L;
+    Long tno = 13L;
     
     Optional<Todo> todo = repository.findById(tno);
     assertTrue(todo.isPresent());
     // when
-    replyRepository.deleteByTodo(todo.get().getTno());
+    replyRepository.deleteByTodo_Tno(todo.get().getTno());
     repository.deleteById(todo.get().getTno());
     // then
     todo = repository.findById(tno);

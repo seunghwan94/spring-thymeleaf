@@ -48,12 +48,11 @@ public class UserServiceImpl implements UserService{
   public void remove(Long uno) {
     List<Todo> todos = todoRepository.findByUser_Uno(6L);
     todos.forEach((todo)->{
-      replyRepository.deleteByTodo(todo.getTno());
+      replyRepository.deleteByTodo_Tno(todo.getTno());
     });
-    replyRepository.deleteByUser(uno);
 
-    todoRepository.deleteByUser(uno);
-    
+    replyRepository.deleteByUser_Uno(uno);
+    todoRepository.deleteByUser_Uno(uno);
     userRepository.deleteById(uno);
   }
 

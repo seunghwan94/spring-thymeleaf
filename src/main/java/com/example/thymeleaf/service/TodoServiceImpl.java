@@ -39,7 +39,7 @@ public class TodoServiceImpl implements TodoService{
   
   @Override
   public void modify(Todo todo, Long tno) {
-    Optional<User> user = userRepository.findById(todo.getUser().getUno());
+    Optional<User> user = userRepository.findById(todo.getUser().getUno());    
     Todo modifyTodo = Todo.builder()
       .tno(todo.getTno())
       .title(todo.getTitle())
@@ -51,7 +51,7 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   public void remove(Long tno) {
-    replyRepository.deleteByTodo(tno);
+    replyRepository.deleteByTodo_Tno(tno);
     todoRepository.deleteById(tno);
   }
 
