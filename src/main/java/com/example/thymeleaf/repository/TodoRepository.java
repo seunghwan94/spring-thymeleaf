@@ -3,6 +3,8 @@ package com.example.thymeleaf.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.thymeleaf.domain.entity.Todo;
@@ -18,12 +20,15 @@ import com.example.thymeleaf.domain.entity.Todo;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long>{
   
-  List<Todo> findByUser_Uno(Long uno);
-  void deleteByUser_Uno(Long uno);
+  List<Todo> findByUserUno(Long uno);
+  void deleteByUserUno(Long uno);
   
-  // @Modifying
-  // @Transactional
-  // @Query("delete from tbl_todo t where t.user.uno = :uno")
-  // int deleteByUser(@Param("uno") Long uno);
+
+  @Query("select count(r), u, t\r\n" + //
+         "FROM tbl_todo t\r\n" + //
+         "left join user u\r\n" + //
+         "left join tbl_reply r on t = r.todo\r\n" + //
+         "where t.tno = :tno")
+  Object getTodoByTno(@Param("tno") Long tno);
 
 }

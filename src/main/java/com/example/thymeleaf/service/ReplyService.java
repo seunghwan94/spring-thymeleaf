@@ -11,4 +11,5 @@ public interface ReplyService {
 
   void modify(Reply reply, int rno);
   void remove(int rno);
+  
 }

@@ -10,7 +10,7 @@ import com.example.thymeleaf.domain.entity.Todo;
 @Repository
 public interface ReplyRepository extends JpaRepository<Reply, Integer>{
   Long countByTodo(Todo todo);
-  void deleteByTodo_Tno(Long tno);
-  void deleteByUser_Uno(Long uno);
+  void deleteByTodoTno(Long tno);
+  void deleteByUserUno(Long uno);
 
 }

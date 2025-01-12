@@ -77,8 +77,8 @@ public class UserRepositoryTest {
     assertTrue(user.isPresent());
 
     // when
-    replyRepository.deleteByUser_Uno(user.get().getUno());
-    todoRepository.deleteByUser_Uno(user.get().getUno());
+    replyRepository.deleteByUserUno(user.get().getUno());
+    todoRepository.deleteByUserUno(user.get().getUno());
     repository.deleteById(user.get().getUno());
 
     // then

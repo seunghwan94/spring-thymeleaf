@@ -51,7 +51,7 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   public void remove(Long tno) {
-    replyRepository.deleteByTodo_Tno(tno);
+    replyRepository.deleteByTodoTno(tno);
     todoRepository.deleteById(tno);
   }
 

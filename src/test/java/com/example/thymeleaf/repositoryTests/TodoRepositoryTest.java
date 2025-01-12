@@ -18,9 +18,11 @@ import com.example.thymeleaf.repository.TodoRepository;
 import com.example.thymeleaf.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.log4j.Log4j2;
 
 
 @SpringBootTest
+@Log4j2
 public class TodoRepositoryTest {
   @Autowired
   private UserRepository userRepository;
@@ -81,11 +83,18 @@ public class TodoRepositoryTest {
     Optional<Todo> todo = repository.findById(tno);
     assertTrue(todo.isPresent());
     // when
-    replyRepository.deleteByTodo_Tno(todo.get().getTno());
+    replyRepository.deleteByTodoTno(todo.get().getTno());
     repository.deleteById(todo.get().getTno());
     // then
     todo = repository.findById(tno);
     assertTrue(todo.isEmpty());
+  }
+
+  @Test
+  public void testGetTodoByTno(){
+    Long tno = 9L;
+    Object[] result = (Object[])repository.getTodoByTno(tno);
+    assertNotNull(result);
   }
 
 }
